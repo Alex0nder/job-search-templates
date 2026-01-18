@@ -6,6 +6,11 @@ Python templates for generating professional PDF Cover Letters and CV/Resume for
 
 - 📄 **Cover Letter Generator** - Create customizable cover letters in PDF format
 - 📋 **CV/Resume Generator** - Generate professional resumes with standard sections
+- 🙏 **Thank You Letter** - Follow-up after interviews
+- 💼 **Recruiter Email** - Initial contact with companies and recruiters
+- 💰 **Salary Negotiation** - Professional salary negotiation letters
+- ❌ **Rejection Response** - Polite decline of job offers
+- 📝 **Recommendation Request** - Ask former colleagues for recommendations
 - 🎨 **Customizable** - Easy to modify templates with your own data
 - 🔗 **Clickable Links** - Email, LinkedIn, and portfolio links are clickable in PDF
 - 🚀 **Ready to Use** - Simple Python scripts, no complex setup needed
@@ -27,11 +32,29 @@ pip install -r requirements.txt
 
 ### Usage
 
-1. Edit `generate_cover_letter.py` and `generate_cv.py` with your information
-2. Run the scripts:
+1. Edit the template script you need with your information
+2. Run the script:
 ```bash
+# Cover Letter
 python generate_cover_letter.py
+
+# CV/Resume
 python generate_cv.py
+
+# Thank You Letter (after interview)
+python generate_thank_you_letter.py
+
+# Recruiter Email
+python generate_recruiter_email.py
+
+# Salary Negotiation
+python generate_salary_negotiation.py
+
+# Rejection Response
+python generate_rejection_response.py
+
+# Recommendation Request
+python generate_recommendation_request.py
 ```
 
 PDF files will be generated in the same directory.
@@ -40,11 +63,16 @@ PDF files will be generated in the same directory.
 
 ```
 job-search-templates/
-├── generate_cover_letter.py  # Cover Letter generator script
-├── generate_cv.py            # CV/Resume generator script
-├── requirements.txt          # Python dependencies
-├── .gitignore               # Git ignore rules
-└── README.md                # This file
+├── generate_cover_letter.py         # Cover Letter generator
+├── generate_cv.py                   # CV/Resume generator
+├── generate_thank_you_letter.py     # Thank You Letter (after interview)
+├── generate_recruiter_email.py      # Recruiter/HR email template
+├── generate_salary_negotiation.py   # Salary negotiation letter
+├── generate_rejection_response.py   # Decline job offer template
+├── generate_recommendation_request.py # Request recommendations
+├── requirements.txt                 # Python dependencies
+├── .gitignore                      # Git ignore rules
+└── README.md                       # This file
 ```
 
 ## Configuration
@@ -143,6 +171,29 @@ Standard sections:
 - **Education** - Educational background
 
 You can modify section names, add new sections, or remove unnecessary ones in the `main()` function of `generate_cv.py`.
+
+## Available Templates
+
+### 1. Cover Letter (`generate_cover_letter.py`)
+Standard cover letter template for job applications. Customize greeting and body text for each company.
+
+### 2. CV/Resume (`generate_cv.py`)
+Professional resume with standard sections: Summary, Impact, Skills, Experience, and Education.
+
+### 3. Thank You Letter (`generate_thank_you_letter.py`)
+Follow-up email after an interview. Includes gratitude, reminder of key points discussed, and enthusiasm for the role.
+
+### 4. Recruiter Email (`generate_recruiter_email.py`)
+Initial contact email to recruiters or HR. Use for cold outreach or when exploring opportunities at a company.
+
+### 5. Salary Negotiation (`generate_salary_negotiation.py`)
+Professional letter to negotiate salary/compensation package. Includes reasoning and value proposition.
+
+### 6. Rejection Response (`generate_rejection_response.py`)
+Polite decline of a job offer. Maintains professional relationship for future opportunities.
+
+### 7. Recommendation Request (`generate_recommendation_request.py`)
+Request recommendations from former colleagues or managers. Useful for LinkedIn recommendations or references.
 
 ## Requirements
 
