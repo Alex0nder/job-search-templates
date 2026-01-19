@@ -55,6 +55,8 @@ python generate_recommendation_request.py
 
 PDF files will be generated in the same directory.
 
+**Note:** Example PDF files are available in the `examples/` folder to see the output format.
+
 ## Professional Style
 
 All templates use a professional scientific publication style:
@@ -92,6 +94,11 @@ job-search-templates/
 ├── generate_reference_check_prep.py   # Reference check preparation
 ├── generate_portfolio_project.py      # Portfolio project description
 ├── generate_academic_style.py         # Academic style example
+├── examples/                          # Example PDF files (generated samples)
+│   ├── Cover_Letter.pdf
+│   ├── CV_Resume.pdf
+│   ├── Thank_You_Letter.pdf
+│   └── ... (all 17 templates)
 ├── requirements.txt                    # Python dependencies
 ├── .gitignore                         # Git ignore rules
 └── README.md                          # This file
