@@ -281,8 +281,12 @@ Feel free to fork, modify, and use these templates for your job search needs.
 
 ## License
 
-Free to use and modify for your personal use.
+This project is free and open source. You are free to use, modify, and distribute these templates for any purpose, including commercial use.
 
 ## Author
 
+**Alexander Young**
+
 Created for simplifying the job search process. Feel free to customize to your needs!
+
+- GitHub: [@Alex0nder](https://github.com/Alex0nder)
