@@ -122,7 +122,7 @@ def build_pdf(path="LinkedIn_Connection_Request.pdf"):
     ]
     
     doc.build(story)
-    print(f"✅ Generated: {path}  (font={BASE_FONT}, academic style)")
+    print(f"✅ Generated: {path}  (font={BASE_FONT})")
 
 
 if __name__ == "__main__":

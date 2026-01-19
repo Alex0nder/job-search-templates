@@ -72,7 +72,7 @@ Sincerely,
 
 # ---------- Build PDF with Academic Style ----------
 
-def build_pdf(path="Academic_Style_Document.pdf"):
+def build_pdf(path="Style_Document.pdf"):
     """Generates PDF in academic style"""
     
     margins = get_academic_margins()
@@ -100,7 +100,7 @@ def build_pdf(path="Academic_Style_Document.pdf"):
     ]
     
     doc.build(story)
-    print(f"✅ Generated: {path}  (font={BASE_FONT}, academic style)")
+    print(f"✅ Generated: {path}  (font={BASE_FONT})")
 
 
 if __name__ == "__main__":

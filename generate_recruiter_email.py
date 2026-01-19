@@ -90,7 +90,7 @@ def build_pdf(path="Recruiter_Email.pdf"):
     ]
     
     doc.build(story)
-    print(f"✅ Generated: {path}  (font={BASE_FONT}, academic style)")
+    print(f"✅ Generated: {path}  (font={BASE_FONT})")
 
 
 if __name__ == "__main__":

@@ -90,7 +90,7 @@ DATA = {
 
 # ---------- Build PDF with Academic Style ----------
 
-def build_pdf(path="CV_Resume_Academic.pdf"):
+def build_pdf(path="CV_Resume.pdf"):
     """Generates CV in academic style"""
     margins = get_academic_margins()
     
@@ -158,7 +158,7 @@ def build_pdf(path="CV_Resume_Academic.pdf"):
         story.append(Paragraph(nz(e), s["body_left"]))
     
     doc.build(story)
-    print(f"✅ Generated: {path}  (font={BASE_FONT}, academic style)")
+    print(f"✅ Generated: {path}  (font={BASE_FONT})")
 
 
 if __name__ == "__main__":

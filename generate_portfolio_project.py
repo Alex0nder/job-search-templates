@@ -120,7 +120,7 @@ def build_pdf(path="Portfolio_Project_Description.pdf"):
     ]
     
     doc.build(story)
-    print(f"✅ Generated: {path}  (font={BASE_FONT}, academic style)")
+    print(f"✅ Generated: {path}  (font={BASE_FONT})")
 
 
 if __name__ == "__main__":

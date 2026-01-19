@@ -1,10 +1,10 @@
 # Job Search Templates
 
-Python templates for generating professional PDF documents for job applications in academic/scientific publication style.
+Python templates for generating professional PDF documents for job applications in scientific publication style.
 
 ## Features
 
-- 📄 **Academic Style** - Beautiful, strict formatting like scientific publications (Times New Roman, justified text, professional margins)
+- 📄 **Professional Style** - Beautiful, strict formatting like scientific publications (Times New Roman, justified text, professional margins)
 - 📝 **17 Professional Templates** - Cover letters, CV, thank you letters, and more
 - 🎨 **Customizable** - Easy to modify templates with your own data
 - 🔗 **Clickable Links** - Email, LinkedIn, and portfolio links are clickable in PDF
@@ -34,7 +34,7 @@ pip install -r requirements.txt
 # Cover Letter
 python generate_cover_letter.py
 
-# CV/Resume (Academic Style)
+# CV/Resume
 python generate_cv_academic.py
 
 # Thank You Letter (after interview)
@@ -55,13 +55,13 @@ python generate_recommendation_request.py
 
 PDF files will be generated in the same directory.
 
-## Academic Style
+## Professional Style
 
-All templates use a professional academic/scientific publication style:
+All templates use a professional scientific publication style:
 
 - **Font**: Times New Roman (serif font)
 - **Text Alignment**: Justified (for body text)
-- **Margins**: 25-30mm (larger margins like academic papers)
+- **Margins**: 25-30mm (larger margins like scientific papers)
 - **Colors**: Dark gray (#1a1a1a) instead of pure black for softer appearance
 - **Typography**: No bullet points, clean paragraph-based lists
 - **Line Spacing**: Tight, professional leading (13pt)
@@ -106,7 +106,7 @@ job-search-templates/
    - Customize greeting and body text for each company
 
 2. **CV/Resume** (`generate_cv_academic.py`)
-   - Professional resume in academic style
+   - Professional resume in scientific publication style
    - Sections: Summary, AI & Product Impact, Core Skills, Experience, Education
 
 3. **Thank You Letter** (`generate_thank_you_letter.py`)
@@ -249,14 +249,14 @@ Uncomment the date line in `generate_cover_letter.py`:
 Paragraph(nz(TODAY), s["date"]),
 ```
 
-## Academic Style Module
+## Style Module
 
 The `academic_styles.py` module provides:
 
 - **Font Registration**: Times New Roman with fallbacks
 - **Style Definitions**: Consistent paragraph styles
-- **Margins**: Academic paper margins (25-30mm)
-- **Link Formatting**: Academic-style links with underlines
+- **Margins**: Scientific paper margins (25-30mm)
+- **Link Formatting**: Professional links with underlines
 - **Color Scheme**: Professional dark gray colors
 
 All templates import and use this module for consistent styling.
