@@ -21,3 +21,7 @@ ENV/
 *.swp
 *.swo
 *~
+
+# Personal files
+LINKEDIN_POST.md
+.DS_Store
