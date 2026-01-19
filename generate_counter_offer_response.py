@@ -1,5 +1,5 @@
-# generate_recommendation_request.py
-# Template for generating Request for Recommendation (request for recommendations) in PDF
+# generate_counter_offer_response.py
+# Template for generating Counter-Offer Response (response to counter-offer) in PDF
 
 # pip install reportlab
 
@@ -43,32 +43,47 @@ NAME    = "John Doe"  # Your name
 EMAIL   = "john.doe@example.com"  # Your email
 LINKS   = f'{format_academic_url_link("LinkedIn", "linkedin.com/in/johndoe")} · {format_academic_url_link("Portfolio", "johndoe.dev")}'
 
-# Data for recommendation request
-REFEREE_NAME = "Name Last Name"  # Person name you are asking for recommendation
-COMPANY = "Example Company"  # Company where you worked together
-ROLE = "Senior Product Designer"  # Your role there
-START_DATE = "January 2020"  # When you started working together
-END_DATE = "March 2023"  # When you finished working together (or "Present")
-CURRENT_POSITION = "Senior Product Designer"  # Position you are applying for
+# Counter-offer data
+MANAGER_NAME = "Name Last Name"  # Your manager name
+COMPANY_NAME = "Example Company"  # Current company
+NEW_COMPANY = "New Company"  # Company that made the offer
 
 
 # ========== LETTER TEXT: Edit for specific situation ==========
+# Choose variant: ACCEPT (accept) or DECLINE (decline) counter-offer
 
-BODY = f"""
+RESPONSE_TYPE = "DECLINE"  # "ACCEPT" or "DECLINE"
 
-Hi {REFEREE_NAME},
+if RESPONSE_TYPE == "ACCEPT":
+    BODY = f"""
 
-I hope you're doing well! I wanted to reach out because I'm exploring new opportunities and I'd love to ask for your support.
+Dear {MANAGER_NAME},
 
-I'm currently applying for {CURRENT_POSITION} positions and I'd be honored if you'd be willing to write a recommendation or serve as a reference for me. We worked together at {COMPANY} from {START_DATE} to {END_DATE}, where I worked as {ROLE}. Your perspective on my work during that time would be invaluable.
+Thank you so much for the counter-offer and for your efforts to keep me at {COMPANY_NAME}. I truly appreciate your support and the value you see in my contributions.
 
-Specifically, if you could speak to [specific aspects - e.g., "my design process, collaboration with cross-functional teams, and ability to deliver results"], that would be particularly helpful.
+After careful consideration, I've decided to accept your counter-offer and stay with {COMPANY_NAME}. I'm excited about the opportunities ahead and look forward to continuing to contribute to the team's success.
 
-I've attached my current resume for your reference. The recommendation can be brief — even just a few sentences about our work together would be very helpful.
+I'm grateful for your flexibility and understanding throughout this process. I'm committed to delivering great work and helping {COMPANY_NAME} achieve its goals.
 
-Of course, I completely understand if you're unable to do this, and I appreciate your time either way. If you have any questions or need additional information, please don't hesitate to reach out.
+Thank you again for everything.
 
-Thank you so much for your consideration, and I hope we can catch up soon!
+Best regards,
+
+{NAME}
+
+"""
+else:  # DECLINE
+    BODY = f"""
+
+Dear {MANAGER_NAME},
+
+Thank you so much for the counter-offer and for your efforts to keep me at {COMPANY_NAME}. I truly appreciate your support and the value you see in my contributions.
+
+After careful consideration, I've decided to move forward with the opportunity at {NEW_COMPANY}. This was not an easy decision, as I have great respect for {COMPANY_NAME} and the team. However, I believe this new role aligns better with my long-term career goals and personal aspirations.
+
+I want to express my gratitude for everything I've learned and experienced during my time here. I'm committed to ensuring a smooth transition and will do everything I can to help during this period.
+
+Thank you again for your understanding and support.
 
 Best regards,
 
@@ -79,7 +94,7 @@ Best regards,
 
 # ---------- Build PDF ----------
 
-def build_pdf(path="Recommendation_Request.pdf"):
+def build_pdf(path="Counter_Offer_Response.pdf"):
     """Generates PDF in academic style"""
     margins = get_academic_margins()
     doc = SimpleDocTemplate(path, pagesize=A4, **margins)

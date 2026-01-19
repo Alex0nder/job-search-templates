@@ -1,5 +1,5 @@
-# generate_recommendation_request.py
-# Template for generating Request for Recommendation (request for recommendations) in PDF
+# generate_application_withdrawal.py
+# Template for generating Application Withdrawal (application withdrawal) in PDF
 
 # pip install reportlab
 
@@ -43,32 +43,26 @@ NAME    = "John Doe"  # Your name
 EMAIL   = "john.doe@example.com"  # Your email
 LINKS   = f'{format_academic_url_link("LinkedIn", "linkedin.com/in/johndoe")} · {format_academic_url_link("Portfolio", "johndoe.dev")}'
 
-# Data for recommendation request
-REFEREE_NAME = "Name Last Name"  # Person name you are asking for recommendation
-COMPANY = "Example Company"  # Company where you worked together
-ROLE = "Senior Product Designer"  # Your role there
-START_DATE = "January 2020"  # When you started working together
-END_DATE = "March 2023"  # When you finished working together (or "Present")
-CURRENT_POSITION = "Senior Product Designer"  # Position you are applying for
+# Data for application withdrawal
+CONTACT_NAME = "Name Last Name"  # Recruiter/HR name
+COMPANY_NAME = "Example Company"  # Company name
+POSITION = "Senior Product Designer"  # Position title
 
 
 # ========== LETTER TEXT: Edit for specific situation ==========
+# Reason for withdrawal can be specified briefly (optional) or removed entirely
 
 BODY = f"""
 
-Hi {REFEREE_NAME},
+Hi {CONTACT_NAME},
 
-I hope you're doing well! I wanted to reach out because I'm exploring new opportunities and I'd love to ask for your support.
+I hope this email finds you well. I'm writing to withdraw my application for the {POSITION} position at {COMPANY_NAME}.
 
-I'm currently applying for {CURRENT_POSITION} positions and I'd be honored if you'd be willing to write a recommendation or serve as a reference for me. We worked together at {COMPANY} from {START_DATE} to {END_DATE}, where I worked as {ROLE}. Your perspective on my work during that time would be invaluable.
+[Optional: brief reason - e.g., "I've accepted another opportunity that better aligns with my career goals" or "My circumstances have changed and I'm no longer actively seeking this position" or simply remove this paragraph]
 
-Specifically, if you could speak to [specific aspects - e.g., "my design process, collaboration with cross-functional teams, and ability to deliver results"], that would be particularly helpful.
+I want to thank you and the team at {COMPANY_NAME} for your time and consideration throughout this process. I have great respect for {COMPANY_NAME} and I wish you the best in finding the right candidate for this role.
 
-I've attached my current resume for your reference. The recommendation can be brief — even just a few sentences about our work together would be very helpful.
-
-Of course, I completely understand if you're unable to do this, and I appreciate your time either way. If you have any questions or need additional information, please don't hesitate to reach out.
-
-Thank you so much for your consideration, and I hope we can catch up soon!
+Thank you again for the opportunity.
 
 Best regards,
 
@@ -79,7 +73,7 @@ Best regards,
 
 # ---------- Build PDF ----------
 
-def build_pdf(path="Recommendation_Request.pdf"):
+def build_pdf(path="Application_Withdrawal.pdf"):
     """Generates PDF in academic style"""
     margins = get_academic_margins()
     doc = SimpleDocTemplate(path, pagesize=A4, **margins)

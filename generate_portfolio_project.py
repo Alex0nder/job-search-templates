@@ -1,5 +1,5 @@
-# generate_recruiter_email.py
-# Template for generating Email request to recruiter/HR in PDF (Academic Style)
+# generate_portfolio_project.py
+# Template for generating Portfolio Project Description in PDF (Academic Style)
 
 # pip install reportlab
 
@@ -35,41 +35,71 @@ def nz(s: str) -> str:
 # ========== CONFIGURATION: Replace with your data ==========
 
 NAME    = "John Doe"  # Your name
-EMAIL   = "john.doe@example.com"  # Your email
 LINKS   = f'{format_academic_url_link("LinkedIn", "linkedin.com/in/johndoe")} · {format_academic_url_link("Portfolio", "johndoe.dev")}'
 
-# Data for request
-RECRUITER_NAME = "Name Last Name"  # Recruiter name (can be left empty or "Hiring Team")
-COMPANY_NAME = "Example Company"  # Company name
-POSITION = "Senior Product Designer"  # Position title
+# Project data
+PROJECT_NAME = "Project Name"  # Project name
+PROJECT_TYPE = "Product Design"  # Project type (Product Design, UX Research, etc.)
+COMPANY = "Example Company"  # Company/client (or "Personal Project")
+TIMELINE = "Q1 2024"  # Project timeline
+TEAM_SIZE = "3 people"  # Team size (or "Solo project")
 
 
-# ========== LETTER TEXT: Edit for specific situation ==========
+# ========== PROJECT DESCRIPTION TEXT ==========
 
 BODY = f"""
 
-Hi {RECRUITER_NAME if RECRUITER_NAME else "there"},
+{PROJECT_NAME}
 
-I hope this email finds you well. I'm reaching out because I'm interested in exploring opportunities at {COMPANY_NAME}. I've been following {COMPANY_NAME}'s work in [industry/field] and I'm impressed by [specific reason interest].
+{PROJECT_TYPE} • {COMPANY} • {TIMELINE} • Team: {TEAM_SIZE}
 
-With [X] years of experience as a [position] focusing on [specialization field], I've worked on [examples of projects or achievements]. I'm particularly drawn to {COMPANY_NAME} because of [specific reason - mission, product, team].
+---
 
-I've attached my CV for your review. I'd love to learn more about open positions or discuss how my experience could contribute to your team. Would you be available for a brief call or coffee chat?
+Challenge
 
-Portfolio & case studies: {format_academic_simple_url("https://example.com")}
+[Describe problem or challenge, that the project solved. What was wrong? What were the pain points users or business?]
 
-Thank you for your time and consideration. Looking forward to hearing from you!
+Solution
 
-Best regards,
+[Describe your solution. What approach did you use? What key decisions were made?]
 
-{NAME}
+Key Features:
+[Key feature 1]
+[Key feature 2]
+[Key feature 3]
+
+Process
+
+[Describe work process: research, iterations, testing, etc.]
+
+Research: [What you learned from research]
+
+Design: [How you approached to design and prototyping]
+
+Testing: [How you tested and iterated]
+
+Results
+
+[Describe results and metrics. What changed? What were the achievements?]
+
+[Result 1 - e.g., "Increased user engagement by 30%"]
+[Result 2 - e.g., "Reduced support tickets by 25%"]
+[Result 3 - e.g., "Improved conversion rate by 15%"]
+
+My Role
+
+[Describe your role in project. What specifically did you do? What were you responsible for?]
+
+Tools & Technologies
+
+[List of tools and technologies used]
 
 """
 
 
 # ---------- Build PDF with Academic Style ----------
 
-def build_pdf(path="Recruiter_Email.pdf"):
+def build_pdf(path="Portfolio_Project_Description.pdf"):
     """Generates PDF in academic style"""
     margins = get_academic_margins()
     
@@ -83,10 +113,10 @@ def build_pdf(path="Recruiter_Email.pdf"):
     
     story = [
         Paragraph(nz(NAME), s["title"]),
-        Spacer(1, 3*mm),
+        Spacer(1, 2*mm),
         Paragraph(nz(LINKS), s["meta"]),
         Spacer(1, 8*mm),
-        Paragraph(nz(BODY).replace("\n\n", "<br/><br/>"), s["body"]),
+        Paragraph(nz(BODY).replace("\n\n", "<br/><br/>").replace("\n---", "<br/><br/>---"), s["body"]),
     ]
     
     doc.build(story)

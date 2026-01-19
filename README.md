@@ -1,19 +1,15 @@
 # Job Search Templates
 
-Python templates for generating professional PDF Cover Letters and CV/Resume for job applications.
+Python templates for generating professional PDF documents for job applications in academic/scientific publication style.
 
 ## Features
 
-- 📄 **Cover Letter Generator** - Create customizable cover letters in PDF format
-- 📋 **CV/Resume Generator** - Generate professional resumes with standard sections
-- 🙏 **Thank You Letter** - Follow-up after interviews
-- 💼 **Recruiter Email** - Initial contact with companies and recruiters
-- 💰 **Salary Negotiation** - Professional salary negotiation letters
-- ❌ **Rejection Response** - Polite decline of job offers
-- 📝 **Recommendation Request** - Ask former colleagues for recommendations
+- 📄 **Academic Style** - Beautiful, strict formatting like scientific publications (Times New Roman, justified text, professional margins)
+- 📝 **17 Professional Templates** - Cover letters, CV, thank you letters, and more
 - 🎨 **Customizable** - Easy to modify templates with your own data
 - 🔗 **Clickable Links** - Email, LinkedIn, and portfolio links are clickable in PDF
 - 🚀 **Ready to Use** - Simple Python scripts, no complex setup needed
+- 🌍 **English Only** - All templates and documentation in English
 
 ## Quick Start
 
@@ -38,8 +34,8 @@ pip install -r requirements.txt
 # Cover Letter
 python generate_cover_letter.py
 
-# CV/Resume
-python generate_cv.py
+# CV/Resume (Academic Style)
+python generate_cv_academic.py
 
 # Thank You Letter (after interview)
 python generate_thank_you_letter.py
@@ -59,21 +55,131 @@ python generate_recommendation_request.py
 
 PDF files will be generated in the same directory.
 
+## Academic Style
+
+All templates use a professional academic/scientific publication style:
+
+- **Font**: Times New Roman (serif font)
+- **Text Alignment**: Justified (for body text)
+- **Margins**: 25-30mm (larger margins like academic papers)
+- **Colors**: Dark gray (#1a1a1a) instead of pure black for softer appearance
+- **Typography**: No bullet points, clean paragraph-based lists
+- **Line Spacing**: Tight, professional leading (13pt)
+
+The `academic_styles.py` module provides consistent styling across all templates.
+
 ## Project Structure
 
 ```
 job-search-templates/
-├── generate_cover_letter.py         # Cover Letter generator
-├── generate_cv.py                   # CV/Resume generator
-├── generate_thank_you_letter.py     # Thank You Letter (after interview)
-├── generate_recruiter_email.py      # Recruiter/HR email template
-├── generate_salary_negotiation.py   # Salary negotiation letter
-├── generate_rejection_response.py   # Decline job offer template
+├── academic_styles.py                  # Academic style definitions (shared module)
+├── generate_cover_letter.py            # Cover Letter generator
+├── generate_cv_academic.py             # CV/Resume generator (academic style)
+├── generate_cv.py                      # CV/Resume generator (standard style)
+├── generate_thank_you_letter.py       # Thank You Letter (after interview)
+├── generate_recruiter_email.py        # Recruiter/HR email template
+├── generate_salary_negotiation.py     # Salary negotiation letter
+├── generate_rejection_response.py     # Decline job offer template
 ├── generate_recommendation_request.py # Request recommendations
-├── requirements.txt                 # Python dependencies
-├── .gitignore                      # Git ignore rules
-└── README.md                       # This file
+├── generate_resignation_letter.py     # Resignation letter
+├── generate_counter_offer_response.py # Response to counter-offer
+├── generate_informational_interview.py # Informational interview request
+├── generate_linkedin_connection.py    # LinkedIn connection request
+├── generate_follow_up.py              # Follow-up after silence
+├── generate_application_withdrawal.py # Application withdrawal
+├── generate_career_break.py           # Career break explanation
+├── generate_networking_email.py       # Networking email
+├── generate_reference_check_prep.py   # Reference check preparation
+├── generate_portfolio_project.py      # Portfolio project description
+├── generate_academic_style.py         # Academic style example
+├── requirements.txt                    # Python dependencies
+├── .gitignore                         # Git ignore rules
+└── README.md                          # This file
 ```
+
+## Available Templates
+
+### Core Templates
+
+1. **Cover Letter** (`generate_cover_letter.py`)
+   - Standard cover letter template for job applications
+   - Customize greeting and body text for each company
+
+2. **CV/Resume** (`generate_cv_academic.py`)
+   - Professional resume in academic style
+   - Sections: Summary, AI & Product Impact, Core Skills, Experience, Education
+
+3. **Thank You Letter** (`generate_thank_you_letter.py`)
+   - Follow-up email after an interview
+   - Includes gratitude, reminder of key points, and enthusiasm
+
+### Communication Templates
+
+4. **Recruiter Email** (`generate_recruiter_email.py`)
+   - Initial contact email to recruiters or HR
+   - Use for cold outreach or exploring opportunities
+
+5. **Networking Email** (`generate_networking_email.py`)
+   - Professional networking emails
+   - Multiple variants for different scenarios
+
+6. **LinkedIn Connection Request** (`generate_linkedin_connection.py`)
+   - LinkedIn connection request messages
+   - Variants: cold outreach, after interview, after meeting, mutual connection
+
+7. **Follow-up Letter** (`generate_follow_up.py`)
+   - Follow-up after application or interview silence
+   - Professional reminder without being pushy
+
+### Negotiation & Response Templates
+
+8. **Salary Negotiation** (`generate_salary_negotiation.py`)
+   - Professional letter to negotiate salary/compensation
+   - Includes reasoning and value proposition
+
+9. **Rejection Response** (`generate_rejection_response.py`)
+   - Polite decline of a job offer
+   - Maintains professional relationship for future opportunities
+
+10. **Counter-Offer Response** (`generate_counter_offer_response.py`)
+    - Response to counter-offer from current employer
+    - Variants: accept or decline
+
+### Career Management Templates
+
+11. **Resignation Letter** (`generate_resignation_letter.py`)
+    - Professional resignation letter
+    - Maintains positive relationship with employer
+
+12. **Application Withdrawal** (`generate_application_withdrawal.py`)
+    - Withdraw job application politely
+    - Useful when accepting another offer
+
+13. **Career Break Explanation** (`generate_career_break.py`)
+    - Explain career gaps positively
+    - Multiple variants for different reasons
+
+### Reference & Recommendation Templates
+
+14. **Recommendation Request** (`generate_recommendation_request.py`)
+    - Request recommendations from former colleagues or managers
+    - Useful for LinkedIn recommendations or references
+
+15. **Reference Check Preparation** (`generate_reference_check_prep.py`)
+    - Prepare your references for reference checks
+    - Helps them highlight your strengths
+
+### Interview Templates
+
+16. **Informational Interview Request** (`generate_informational_interview.py`)
+    - Request informational interviews
+    - Learn about company, role, or industry
+
+### Portfolio Templates
+
+17. **Portfolio Project Description** (`generate_portfolio_project.py`)
+    - Professional project case study format
+    - Structure: Challenge, Solution, Process, Results, Role, Tools
 
 ## Configuration
 
@@ -83,17 +189,16 @@ Edit the following variables in `generate_cover_letter.py`:
 
 ```python
 NAME    = "Your Name"
-CITY    = "Your City"
-PHONE   = "+1 234 567 8900"
-EMAIL   = "your.email@example.com"
-LINKS   = f'{format_url_link("LinkedIn", "linkedin.com/in/yourprofile")} · {format_url_link("Portfolio", "yourportfolio.com")}'
+LINKS   = f'{format_academic_url_link("LinkedIn", "linkedin.com/in/yourprofile")} · {format_academic_url_link("Portfolio", "yourportfolio.com")}'
+COMPANY = "Example Company"
+ROLE    = "Senior Product Designer"
 ```
 
 Edit the `BODY` variable to customize your cover letter text.
 
 ### CV/Resume Setup
 
-Edit the `DATA` dictionary in `generate_cv.py`:
+Edit the `DATA` dictionary in `generate_cv_academic.py`:
 
 ```python
 DATA = {
@@ -116,12 +221,14 @@ DATA = {
 
 ### Fonts (Optional)
 
-For better cross-platform support and special characters:
+For best results with Times New Roman:
 
-1. Create a `fonts/` directory in the project root
-2. Add font files:
-   - `DejaVuSans.ttf`
-   - `DejaVuSans-Bold.ttf`
+1. On macOS: Times New Roman is available by default
+2. On Linux: Add DejaVuSerif fonts to `fonts/` directory:
+   - `DejaVuSerif.ttf`
+   - `DejaVuSerif-Bold.ttf`
+   - `DejaVuSerif-Italic.ttf`
+   - `DejaVuSerif-BoldItalic.ttf`
 3. Download from [DejaVu Fonts](https://dejavu-fonts.github.io/)
 
 If fonts are not specified, system default fonts will be used.
@@ -130,7 +237,7 @@ If fonts are not specified, system default fonts will be used.
 
 Default output files:
 - Cover Letter: `Cover_Letter.pdf`
-- CV: `CV_Resume.pdf`
+- CV: `CV_Resume_Academic.pdf`
 
 You can change these in the `build_pdf()` function in each script.
 
@@ -142,58 +249,17 @@ Uncomment the date line in `generate_cover_letter.py`:
 Paragraph(nz(TODAY), s["date"]),
 ```
 
-## Customizing for Specific Companies
+## Academic Style Module
 
-### Cover Letter
+The `academic_styles.py` module provides:
 
-Create a separate version for each company:
+- **Font Registration**: Times New Roman with fallbacks
+- **Style Definitions**: Consistent paragraph styles
+- **Margins**: Academic paper margins (25-30mm)
+- **Link Formatting**: Academic-style links with underlines
+- **Color Scheme**: Professional dark gray colors
 
-1. Copy `generate_cover_letter.py` with a new name (e.g., `cover_letter_company_name.py`)
-2. Edit:
-   - Greeting (Hi, Hello [Company Name]!, etc.)
-   - `BODY` content for the specific company and role
-   - Output filename in `build_pdf()`
-
-### CV
-
-Typically one CV works for all positions, but you can:
-- Adjust `summary` for specific industries
-- Add/remove sections (e.g., projects, publications)
-- Change the filename
-
-## CV Structure
-
-Standard sections:
-- **Summary** - Brief description (1-2 sentences)
-- **AI & Product Impact** - Key achievements and results
-- **Core Skills** - List of skills
-- **Experience** - Work experience with descriptions
-- **Education** - Educational background
-
-You can modify section names, add new sections, or remove unnecessary ones in the `main()` function of `generate_cv.py`.
-
-## Available Templates
-
-### 1. Cover Letter (`generate_cover_letter.py`)
-Standard cover letter template for job applications. Customize greeting and body text for each company.
-
-### 2. CV/Resume (`generate_cv.py`)
-Professional resume with standard sections: Summary, Impact, Skills, Experience, and Education.
-
-### 3. Thank You Letter (`generate_thank_you_letter.py`)
-Follow-up email after an interview. Includes gratitude, reminder of key points discussed, and enthusiasm for the role.
-
-### 4. Recruiter Email (`generate_recruiter_email.py`)
-Initial contact email to recruiters or HR. Use for cold outreach or when exploring opportunities at a company.
-
-### 5. Salary Negotiation (`generate_salary_negotiation.py`)
-Professional letter to negotiate salary/compensation package. Includes reasoning and value proposition.
-
-### 6. Rejection Response (`generate_rejection_response.py`)
-Polite decline of a job offer. Maintains professional relationship for future opportunities.
-
-### 7. Recommendation Request (`generate_recommendation_request.py`)
-Request recommendations from former colleagues or managers. Useful for LinkedIn recommendations or references.
+All templates import and use this module for consistent styling.
 
 ## Requirements
 
@@ -206,7 +272,8 @@ If you encounter issues:
 
 1. Ensure all dependencies are installed: `pip install -r requirements.txt`
 2. Verify data in scripts is correct (no syntax errors)
-3. Check font paths format if using custom fonts
+3. Check font paths if using custom fonts
+4. Ensure `academic_styles.py` is in the same directory as templates
 
 ## Contributing
 

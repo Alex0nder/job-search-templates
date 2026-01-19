@@ -1,5 +1,5 @@
-# generate_recruiter_email.py
-# Template for generating Email request to recruiter/HR in PDF (Academic Style)
+# generate_linkedin_connection.py
+# Template for generating LinkedIn Connection Request in PDF (Academic Style)
 
 # pip install reportlab
 
@@ -35,33 +35,65 @@ def nz(s: str) -> str:
 # ========== CONFIGURATION: Replace with your data ==========
 
 NAME    = "John Doe"  # Your name
-EMAIL   = "john.doe@example.com"  # Your email
 LINKS   = f'{format_academic_url_link("LinkedIn", "linkedin.com/in/johndoe")} · {format_academic_url_link("Portfolio", "johndoe.dev")}'
 
-# Data for request
-RECRUITER_NAME = "Name Last Name"  # Recruiter name (can be left empty or "Hiring Team")
-COMPANY_NAME = "Example Company"  # Company name
-POSITION = "Senior Product Designer"  # Position title
+# Data for LinkedIn request
+CONTACT_NAME = "Name Last Name"  # Person name
+COMPANY_NAME = "Example Company"  # Company where person works
+CONNECTION_TYPE = "AFTER_INTERVIEW"  # "COLD", "AFTER_INTERVIEW", "AFTER_MEETING", "MUTUAL_CONNECTION"
 
 
-# ========== LETTER TEXT: Edit for specific situation ==========
+# ========== LETTER TEXT: Variants depending on connection type ==========
 
-BODY = f"""
+if CONNECTION_TYPE == "COLD":
+    BODY = f"""
 
-Hi {RECRUITER_NAME if RECRUITER_NAME else "there"},
+Hi {CONTACT_NAME},
 
-I hope this email finds you well. I'm reaching out because I'm interested in exploring opportunities at {COMPANY_NAME}. I've been following {COMPANY_NAME}'s work in [industry/field] and I'm impressed by [specific reason interest].
+I came across your profile and I'm impressed by your work at {COMPANY_NAME}. I'm also in [industry/field] and would love to connect and learn from your experience.
 
-With [X] years of experience as a [position] focusing on [specialization field], I've worked on [examples of projects or achievements]. I'm particularly drawn to {COMPANY_NAME} because of [specific reason - mission, product, team].
+Looking forward to connecting!
 
-I've attached my CV for your review. I'd love to learn more about open positions or discuss how my experience could contribute to your team. Would you be available for a brief call or coffee chat?
+Best,
+{NAME}
 
-Portfolio & case studies: {format_academic_simple_url("https://example.com")}
+"""
+elif CONNECTION_TYPE == "AFTER_INTERVIEW":
+    BODY = f"""
 
-Thank you for your time and consideration. Looking forward to hearing from you!
+Hi {CONTACT_NAME},
 
-Best regards,
+Great meeting you during the interview process at {COMPANY_NAME}! I really enjoyed our conversation about [topic from interview].
 
+I'd love to stay connected on LinkedIn. Looking forward to keeping in touch!
+
+Best,
+{NAME}
+
+"""
+elif CONNECTION_TYPE == "AFTER_MEETING":
+    BODY = f"""
+
+Hi {CONTACT_NAME},
+
+It was great meeting you at [event/conference/meeting]! I really enjoyed our conversation about [topic].
+
+I'd love to connect on LinkedIn and continue the conversation. Looking forward to staying in touch!
+
+Best,
+{NAME}
+
+"""
+else:  # MUTUAL_CONNECTION
+    BODY = f"""
+
+Hi {CONTACT_NAME},
+
+I noticed we have [Name] in common, and I'm impressed by your work at {COMPANY_NAME}. I'm also in [industry/field] and would love to connect.
+
+Looking forward to connecting!
+
+Best,
 {NAME}
 
 """
@@ -69,7 +101,7 @@ Best regards,
 
 # ---------- Build PDF with Academic Style ----------
 
-def build_pdf(path="Recruiter_Email.pdf"):
+def build_pdf(path="LinkedIn_Connection_Request.pdf"):
     """Generates PDF in academic style"""
     margins = get_academic_margins()
     

@@ -1,5 +1,5 @@
-# generate_recommendation_request.py
-# Template for generating Request for Recommendation (request for recommendations) in PDF
+# generate_resignation_letter.py
+# Template for generating Resignation Letter (resignation letter) in PDF
 
 # pip install reportlab
 
@@ -43,32 +43,30 @@ NAME    = "John Doe"  # Your name
 EMAIL   = "john.doe@example.com"  # Your email
 LINKS   = f'{format_academic_url_link("LinkedIn", "linkedin.com/in/johndoe")} · {format_academic_url_link("Portfolio", "johndoe.dev")}'
 
-# Data for recommendation request
-REFEREE_NAME = "Name Last Name"  # Person name you are asking for recommendation
-COMPANY = "Example Company"  # Company where you worked together
-ROLE = "Senior Product Designer"  # Your role there
-START_DATE = "January 2020"  # When you started working together
-END_DATE = "March 2023"  # When you finished working together (or "Present")
-CURRENT_POSITION = "Senior Product Designer"  # Position you are applying for
+# Data about resignation
+MANAGER_NAME = "Name Last Name"  # Your manager name
+COMPANY_NAME = "Example Company"  # Company name
+POSITION = "Senior Product Designer"  # Your current position
+LAST_DAY = "February 15, 2026"  # Last working day (usually 2 weeks or per contract)
+NOTICE_PERIOD = "2 weeks"  # Notice period
 
 
 # ========== LETTER TEXT: Edit for specific situation ==========
+# Resignation reason can be specified briefly (optional) or removed entirely
 
 BODY = f"""
 
-Hi {REFEREE_NAME},
+Dear {MANAGER_NAME},
 
-I hope you're doing well! I wanted to reach out because I'm exploring new opportunities and I'd love to ask for your support.
+Please accept this letter as formal notification that I am resigning from my position as {POSITION} at {COMPANY_NAME}. My last day of work will be {LAST_DAY}, which provides {NOTICE_PERIOD} notice as required.
 
-I'm currently applying for {CURRENT_POSITION} positions and I'd be honored if you'd be willing to write a recommendation or serve as a reference for me. We worked together at {COMPANY} from {START_DATE} to {END_DATE}, where I worked as {ROLE}. Your perspective on my work during that time would be invaluable.
+I want to express my gratitude for the opportunities I've had during my time at {COMPANY_NAME}. I've learned a great deal and truly appreciate the support and guidance I've received from you and the team.
 
-Specifically, if you could speak to [specific aspects - e.g., "my design process, collaboration with cross-functional teams, and ability to deliver results"], that would be particularly helpful.
+[Optional: brief reason - e.g., "I've accepted a new opportunity that aligns with my long-term career goals" or "I'm taking time to focus on personal development" or simply remove this paragraph]
 
-I've attached my current resume for your reference. The recommendation can be brief — even just a few sentences about our work together would be very helpful.
+I'm committed to ensuring a smooth transition. I'm happy to help train my replacement, document my current projects, and assist in any way possible during this transition period.
 
-Of course, I completely understand if you're unable to do this, and I appreciate your time either way. If you have any questions or need additional information, please don't hesitate to reach out.
-
-Thank you so much for your consideration, and I hope we can catch up soon!
+Thank you again for everything. I wish {COMPANY_NAME} and the team continued success.
 
 Best regards,
 
@@ -79,7 +77,7 @@ Best regards,
 
 # ---------- Build PDF ----------
 
-def build_pdf(path="Recommendation_Request.pdf"):
+def build_pdf(path="Resignation_Letter.pdf"):
     """Generates PDF in academic style"""
     margins = get_academic_margins()
     doc = SimpleDocTemplate(path, pagesize=A4, **margins)

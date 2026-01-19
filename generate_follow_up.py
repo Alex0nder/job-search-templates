@@ -1,5 +1,5 @@
-# generate_recommendation_request.py
-# Template for generating Request for Recommendation (request for recommendations) in PDF
+# generate_follow_up.py
+# Template for generating Follow-up after silence in PDF
 
 # pip install reportlab
 
@@ -43,32 +43,41 @@ NAME    = "John Doe"  # Your name
 EMAIL   = "john.doe@example.com"  # Your email
 LINKS   = f'{format_academic_url_link("LinkedIn", "linkedin.com/in/johndoe")} · {format_academic_url_link("Portfolio", "johndoe.dev")}'
 
-# Data for recommendation request
-REFEREE_NAME = "Name Last Name"  # Person name you are asking for recommendation
-COMPANY = "Example Company"  # Company where you worked together
-ROLE = "Senior Product Designer"  # Your role there
-START_DATE = "January 2020"  # When you started working together
-END_DATE = "March 2023"  # When you finished working together (or "Present")
-CURRENT_POSITION = "Senior Product Designer"  # Position you are applying for
+# Data for follow-up
+CONTACT_NAME = "Name Last Name"  # Contact name (recruiter, manager, etc.)
+COMPANY_NAME = "Example Company"  # Company name
+FOLLOW_UP_TYPE = "AFTER_APPLICATION"  # "AFTER_APPLICATION" or "AFTER_INTERVIEW"
+TIME_PASSED = "2 weeks"  # How much time has passed
 
 
-# ========== LETTER TEXT: Edit for specific situation ==========
+# ========== LETTER TEXT: Variants depending on follow-up type ==========
 
-BODY = f"""
+if FOLLOW_UP_TYPE == "AFTER_APPLICATION":
+    BODY = f"""
 
-Hi {REFEREE_NAME},
+Hi {CONTACT_NAME},
 
-I hope you're doing well! I wanted to reach out because I'm exploring new opportunities and I'd love to ask for your support.
+I hope this email finds you well. I wanted to follow up on my application for [position title] at {COMPANY_NAME}, which I submitted about {TIME_PASSED} ago.
 
-I'm currently applying for {CURRENT_POSITION} positions and I'd be honored if you'd be willing to write a recommendation or serve as a reference for me. We worked together at {COMPANY} from {START_DATE} to {END_DATE}, where I worked as {ROLE}. Your perspective on my work during that time would be invaluable.
+I'm still very interested in this opportunity and would love to learn more about the next steps in the process. I understand you're likely busy, so I appreciate any update you can provide.
 
-Specifically, if you could speak to [specific aspects - e.g., "my design process, collaboration with cross-functional teams, and ability to deliver results"], that would be particularly helpful.
+If the position has been filled, I'd still be interested in future opportunities at {COMPANY_NAME}. Thank you for your time and consideration!
 
-I've attached my current resume for your reference. The recommendation can be brief — even just a few sentences about our work together would be very helpful.
+Best regards,
 
-Of course, I completely understand if you're unable to do this, and I appreciate your time either way. If you have any questions or need additional information, please don't hesitate to reach out.
+{NAME}
 
-Thank you so much for your consideration, and I hope we can catch up soon!
+"""
+else:  # AFTER_INTERVIEW
+    BODY = f"""
+
+Hi {CONTACT_NAME},
+
+I hope you're doing well. I wanted to follow up on our interview for [position title] at {COMPANY_NAME}, which took place about {TIME_PASSED} ago.
+
+I'm still very enthusiastic about this opportunity and would love to hear about the next steps. I understand the hiring process can take time, so I wanted to check in and see if there's any update.
+
+Thank you again for your time during the interview process. I'm looking forward to hearing from you!
 
 Best regards,
 
@@ -79,7 +88,7 @@ Best regards,
 
 # ---------- Build PDF ----------
 
-def build_pdf(path="Recommendation_Request.pdf"):
+def build_pdf(path="Follow_Up_Letter.pdf"):
     """Generates PDF in academic style"""
     margins = get_academic_margins()
     doc = SimpleDocTemplate(path, pagesize=A4, **margins)

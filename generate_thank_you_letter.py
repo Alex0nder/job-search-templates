@@ -1,93 +1,51 @@
 # generate_thank_you_letter.py
-# Шаблон для генерации Thank You Letter (после собеседования) в PDF
+# Template for generating Thank You Letter (after interview) in PDF (Academic Style)
 
 # pip install reportlab
 
 from reportlab.lib.pagesizes import A4
 from reportlab.platypus import SimpleDocTemplate, Paragraph, Spacer
-from reportlab.lib.styles import getSampleStyleSheet, ParagraphStyle
 from reportlab.lib.units import mm
-from reportlab.pdfbase import pdfmetrics
-from reportlab.pdfbase.ttfonts import TTFont
-from reportlab.rl_config import TTFSearchPath
-import os, unicodedata, datetime
+import unicodedata, datetime
 
-
-# ---------- Fonts (macOS Arial → DejaVu fallback) ----------
-
-ARIAL_REG = "/System/Library/Fonts/Supplemental/Arial.ttf"
-ARIAL_BLD = "/System/Library/Fonts/Supplemental/Arial Bold.ttf"
-FONT_CANDIDATES = [
-    ("ArialCustom", ARIAL_REG, ARIAL_BLD),
-    ("DejaVuSans", "fonts/DejaVuSans.ttf", "fonts/DejaVuSans-Bold.ttf"),
-]
-
-def register_fonts():
-    TTFSearchPath.append(os.path.abspath("fonts"))
-    for fam, reg, bld in FONT_CANDIDATES:
-        if os.path.exists(reg):
-            try:
-                pdfmetrics.registerFont(TTFont(fam, reg))
-                bold = fam
-                if os.path.exists(bld):
-                    pdfmetrics.registerFont(TTFont(fam+"-Bold", bld))
-                    bold = fam+"-Bold"
-                return fam, bold
-            except Exception:
-                continue
-    return "Times-Roman", "Times-Bold"
-
-BASE_FONT, BOLD_FONT = register_fonts()
+# Import academic styles
+from academic_styles import (
+    get_academic_styles,
+    get_academic_margins,
+    format_academic_url_link,
+    format_academic_simple_url,
+    format_academic_email_link,
+    BASE_FONT
+)
 
 
 # ---------- Helpers ----------
 
 def nz(s: str) -> str:
-    """Нормализация unicode и замены символов"""
+    """Unicode normalization and character replacements (academic style)"""
     if not s: return ""
     s = unicodedata.normalize("NFC", s)
     return (s.replace("\u00A0"," ")
              .replace("\u2009"," ")
-             .replace("\u2013","-")
-             .replace("\u2014","--")
-             .replace("\u2212","-"))
-
-def format_email_link(email):
-    """Форматирует email в кликабельную ссылку mailto"""
-    return f'<a href="mailto:{email}" color="blue">{email}</a>'
-
-def format_url_link(name, url):
-    """Форматирует URL в кликабельную ссылку"""
-    if not url.startswith(("http://", "https://")):
-        full_url = f"https://{url}"
-    else:
-        full_url = url
-    return f'<a href="{full_url}" color="blue">{name}: {url}</a>'
-
-def styles():
-    base = getSampleStyleSheet()
-    return {
-        "hdr": ParagraphStyle("hdr", parent=base["Normal"], fontName=BOLD_FONT, fontSize=12, leading=15),
-        "meta": ParagraphStyle("meta", parent=base["Normal"], fontName=BASE_FONT, fontSize=10, leading=13, textColor="#444444"),
-        "p": ParagraphStyle("p", parent=base["Normal"], fontName=BASE_FONT, fontSize=11, leading=15),
-        "sig": ParagraphStyle("sig", parent=base["Normal"], fontName=BOLD_FONT, fontSize=11, leading=14, spaceBefore=10),
-    }
+             .replace("\u2013","–")  # en-dash for academic style
+             .replace("\u2014","—")  # em-dash
+             .replace("\u2212","−"))
 
 
-# ========== НАСТРОЙКИ: Замените на свои данные ==========
+# ========== CONFIGURATION: Replace with your data ==========
 
-NAME    = "Иван Иванов"  # Ваше имя
-EMAIL   = "ivan.ivanov@example.com"  # Ваш email
-LINKS   = f'{format_url_link("LinkedIn", "linkedin.com/in/ivanov")} · {format_url_link("Portfolio", "ivanov.dev")}'
+NAME    = "John Doe"  # Your name
+EMAIL   = "john.doe@example.com"  # Your email
+LINKS   = f'{format_academic_url_link("LinkedIn", "linkedin.com/in/johndoe")} · {format_academic_url_link("Portfolio", "johndoe.dev")}'
 
-# Данные собеседования
-INTERVIEWER_NAME = "Имя Фамилия"  # Имя интервьюера (или Hiring Manager)
-COMPANY_NAME = "Пример Компания"  # Название компании
-POSITION = "Senior Product Designer"  # Название позиции
-INTERVIEW_DATE = "вчера"  # Дата собеседования (например, "January 15, 2026" или "вчера")
+# Interview data
+INTERVIEWER_NAME = "Name Last Name"  # Interviewer name (or Hiring Manager)
+COMPANY_NAME = "Example Company"  # Company name
+POSITION = "Senior Product Designer"  # Position title
+INTERVIEW_DATE = "yesterday"  # Interview date (e.g., "January 15, 2026" or "yesterday")
 
 
-# ========== ТЕКСТ ПИСЬМА: Отредактируйте под конкретную ситуацию ==========
+# ========== LETTER TEXT: Edit for specific situation ==========
 
 BODY = f"""
 
@@ -95,9 +53,9 @@ Dear {INTERVIEWER_NAME},
 
 Thank you for taking the time to meet with me {INTERVIEW_DATE} to discuss the {POSITION} role at {COMPANY_NAME}. I really enjoyed our conversation and learning more about the team, the product vision, and the challenges you're working on.
 
-Our discussion about [укажите конкретную тему из собеседования] reinforced my interest in this position. I'm particularly excited about the opportunity to [укажите конкретную причину интереса]. Based on my experience with [релевантный опыт], I believe I can contribute to [конкретный результат или проект].
+Our discussion about [specify specific topic from interview] reinforced my interest in this position. I'm particularly excited about the opportunity to [specify specific reason for interest]. Based on my experience with [relevant experience], I believe I can contribute to [specific result or project].
 
-I also wanted to mention [дополнительная мысль или уточнение, если есть].
+I also wanted to mention [additional thought or clarification, if any].
 
 Thank you again for your time and consideration. I look forward to hearing from you about the next steps.
 
@@ -105,34 +63,36 @@ Best regards,
 
 {NAME}
 
-{EMAIL}
-
-{LINKS}
-
 """
 
 
-# ---------- Build PDF ----------
+# ---------- Build PDF with Academic Style ----------
 
 def build_pdf(path="Thank_You_Letter.pdf"):
-    doc = SimpleDocTemplate(path, pagesize=A4,
-                            leftMargin=18*mm, rightMargin=18*mm,
-                            topMargin=16*mm, bottomMargin=16*mm)
-    s = styles()
+    """Generates PDF in academic style"""
+    margins = get_academic_margins()
+    
+    doc = SimpleDocTemplate(
+        path,
+        pagesize=A4,
+        **margins
+    )
+    
+    s = get_academic_styles()
     
     story = [
-        Paragraph(nz(NAME), s["hdr"]),
+        Paragraph(nz(NAME), s["title"]),
         Spacer(1, 3*mm),
         Paragraph(nz(LINKS), s["meta"]),
         Spacer(1, 8*mm),
-        Paragraph(nz(BODY).replace("\n\n", "<br/><br/>"), s["p"]),
+        Paragraph(nz(BODY).replace("\n\n", "<br/><br/>"), s["body"]),
     ]
     
     doc.build(story)
-    print(f"✅ Generated: {path}  (font={BASE_FONT})")
+    print(f"✅ Generated: {path}  (font={BASE_FONT}, academic style)")
 
 
 if __name__ == "__main__":
-    if BASE_FONT in ("Times-Roman", "Helvetica"):
-        print("⚠️ Font fallback in use. For best results add fonts/DejaVuSans.ttf and DejaVuSans-Bold.ttf in ./fonts/")
+    if BASE_FONT == "Times-Roman":
+        print("⚠️ Using system Times-Roman. For best results, ensure Times New Roman fonts are available or add DejaVuSerif fonts to ./fonts/")
     build_pdf()

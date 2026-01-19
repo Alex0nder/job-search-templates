@@ -1,5 +1,5 @@
-# generate_recommendation_request.py
-# Template for generating Request for Recommendation (request for recommendations) in PDF
+# generate_informational_interview.py
+# Template for generating Informational Interview Request in PDF
 
 # pip install reportlab
 
@@ -36,6 +36,8 @@ def nz(s: str) -> str:
 
     return f'<a href="{full_url}" color="blue">{name}: {url}</a>'
 
+    return f'<a href="{full_url}" color="blue">{url}</a>'
+
 
 # ========== CONFIGURATION: Replace with your data ==========
 
@@ -43,32 +45,29 @@ NAME    = "John Doe"  # Your name
 EMAIL   = "john.doe@example.com"  # Your email
 LINKS   = f'{format_academic_url_link("LinkedIn", "linkedin.com/in/johndoe")} · {format_academic_url_link("Portfolio", "johndoe.dev")}'
 
-# Data for recommendation request
-REFEREE_NAME = "Name Last Name"  # Person name you are asking for recommendation
-COMPANY = "Example Company"  # Company where you worked together
-ROLE = "Senior Product Designer"  # Your role there
-START_DATE = "January 2020"  # When you started working together
-END_DATE = "March 2023"  # When you finished working together (or "Present")
-CURRENT_POSITION = "Senior Product Designer"  # Position you are applying for
+# Data for informational interview
+CONTACT_NAME = "Name Last Name"  # Person name, you want to meet with
+COMPANY_NAME = "Example Company"  # Company where person works
+THEIR_ROLE = "Senior Product Designer"  # This person role
+CONNECTION = "LinkedIn"  # How you are connected (LinkedIn, mutual connection, conference, etc.)
 
 
 # ========== LETTER TEXT: Edit for specific situation ==========
 
 BODY = f"""
 
-Hi {REFEREE_NAME},
+Hi {CONTACT_NAME},
 
-I hope you're doing well! I wanted to reach out because I'm exploring new opportunities and I'd love to ask for your support.
+I hope this message finds you well. I came across your profile on {CONNECTION} and I'm really impressed by your work as {THEIR_ROLE} at {COMPANY_NAME}.
 
-I'm currently applying for {CURRENT_POSITION} positions and I'd be honored if you'd be willing to write a recommendation or serve as a reference for me. We worked together at {COMPANY} from {START_DATE} to {END_DATE}, where I worked as {ROLE}. Your perspective on my work during that time would be invaluable.
+I'm currently exploring opportunities in [industry/field] and I'd love to learn more about your experience at {COMPANY_NAME} and in the industry. Would you be open to a brief informational chat (15-20 minutes) over coffee or a video call? I'm particularly interested in learning about:
+[Specific question 1 - e.g., "the product design process at {COMPANY_NAME}"]
+[Specific question 2 - e.g., "challenges in the industry"]
+[Specific question 3 - e.g., "career growth paths"]
 
-Specifically, if you could speak to [specific aspects - e.g., "my design process, collaboration with cross-functional teams, and ability to deliver results"], that would be particularly helpful.
+I completely understand if you're busy, and I'd be happy to work around your schedule. Even just a few minutes would be incredibly helpful.
 
-I've attached my current resume for your reference. The recommendation can be brief — even just a few sentences about our work together would be very helpful.
-
-Of course, I completely understand if you're unable to do this, and I appreciate your time either way. If you have any questions or need additional information, please don't hesitate to reach out.
-
-Thank you so much for your consideration, and I hope we can catch up soon!
+Thank you so much for your time and consideration!
 
 Best regards,
 
@@ -79,7 +78,7 @@ Best regards,
 
 # ---------- Build PDF ----------
 
-def build_pdf(path="Recommendation_Request.pdf"):
+def build_pdf(path="Informational_Interview_Request.pdf"):
     """Generates PDF in academic style"""
     margins = get_academic_margins()
     doc = SimpleDocTemplate(path, pagesize=A4, **margins)

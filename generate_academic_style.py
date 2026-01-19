@@ -1,5 +1,6 @@
-# generate_recruiter_email.py
-# Template for generating Email request to recruiter/HR in PDF (Academic Style)
+# generate_academic_style.py
+# Template for generating documents in academic/scientific style
+# Strict, beautiful style as in scientific publications
 
 # pip install reportlab
 
@@ -38,29 +39,31 @@ NAME    = "John Doe"  # Your name
 EMAIL   = "john.doe@example.com"  # Your email
 LINKS   = f'{format_academic_url_link("LinkedIn", "linkedin.com/in/johndoe")} · {format_academic_url_link("Portfolio", "johndoe.dev")}'
 
-# Data for request
-RECRUITER_NAME = "Name Last Name"  # Recruiter name (can be left empty or "Hiring Team")
-COMPANY_NAME = "Example Company"  # Company name
-POSITION = "Senior Product Designer"  # Position title
+TODAY   = datetime.date.today().strftime("%B %d, %Y")  # Date (can be removed from story)
 
 
-# ========== LETTER TEXT: Edit for specific situation ==========
+# ========== LETTER TEXT ==========
 
 BODY = f"""
 
-Hi {RECRUITER_NAME if RECRUITER_NAME else "there"},
+This is an example document in academic style. The text is justified, uses Times New Roman font, and follows the strict formatting conventions of scientific publications.
 
-I hope this email finds you well. I'm reaching out because I'm interested in exploring opportunities at {COMPANY_NAME}. I've been following {COMPANY_NAME}'s work in [industry/field] and I'm impressed by [specific reason interest].
+Academic papers typically use:
+- Justified text alignment
+- Times New Roman or similar serif fonts
+- Larger margins (25-30mm)
+- Tight line spacing (leading 13)
+- Dark gray colors instead of pure black
+- No bullet points in lists
+- En-dashes (–) instead of hyphens (-)
 
-With [X] years of experience as a [position] focusing on [specialization field], I've worked on [examples of projects or achievements]. I'm particularly drawn to {COMPANY_NAME} because of [specific reason - mission, product, team].
+This style creates a professional, scholarly appearance that is commonly used in academic journals, research papers, and formal publications.
 
-I've attached my CV for your review. I'd love to learn more about open positions or discuss how my experience could contribute to your team. Would you be available for a brief call or coffee chat?
+The formatting emphasizes readability and follows established typographic conventions that have been refined over decades of academic publishing.
 
-Portfolio & case studies: {format_academic_simple_url("https://example.com")}
+Thank you for your time and consideration.
 
-Thank you for your time and consideration. Looking forward to hearing from you!
-
-Best regards,
+Sincerely,
 
 {NAME}
 
@@ -69,8 +72,9 @@ Best regards,
 
 # ---------- Build PDF with Academic Style ----------
 
-def build_pdf(path="Recruiter_Email.pdf"):
+def build_pdf(path="Academic_Style_Document.pdf"):
     """Generates PDF in academic style"""
+    
     margins = get_academic_margins()
     
     doc = SimpleDocTemplate(
@@ -82,10 +86,16 @@ def build_pdf(path="Recruiter_Email.pdf"):
     s = get_academic_styles()
     
     story = [
+        # Title
         Paragraph(nz(NAME), s["title"]),
-        Spacer(1, 3*mm),
+        
+        # Metadata
         Paragraph(nz(LINKS), s["meta"]),
-        Spacer(1, 8*mm),
+        
+        # Date (optional, uncomment if needed)
+        # Paragraph(nz(TODAY), s["date"]),
+        
+        # Main text
         Paragraph(nz(BODY).replace("\n\n", "<br/><br/>"), s["body"]),
     ]
     

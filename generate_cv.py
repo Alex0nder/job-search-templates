@@ -1,5 +1,5 @@
 # generate_cv.py
-# Шаблон для генерации CV/Resume в PDF
+# Template for generating CV/Resume in PDF
 
 # pip install reportlab
 
@@ -18,7 +18,7 @@ FONT_BOLD = "Helvetica-Bold"
 
 
 def draw_wrapped_text(c: canvas.Canvas, text: str, x: float, y: float, max_width: float, font: str, size: int, leading: float):
-    """Рисует текст с переносом строк"""
+    """Draws text with line breaks"""
     c.setFont(font, size)
     words = text.split()
     line = ""
@@ -40,7 +40,7 @@ def draw_wrapped_text(c: canvas.Canvas, text: str, x: float, y: float, max_width
     return y
 
 def draw_link(c: canvas.Canvas, text: str, url: str, x: float, y: float, font: str, size: int):
-    """Рисует текст со ссылкой на canvas"""
+    """Draws text with link on canvas"""
     c.setFont(font, size)
     width = c.stringWidth(text, font, size)
     c.drawString(x, y, text)
@@ -48,34 +48,34 @@ def draw_link(c: canvas.Canvas, text: str, url: str, x: float, y: float, font: s
     return x + width
 
 def section_title(c: canvas.Canvas, title: str, x: float, y: float):
-    """Рисует заголовок секции"""
+    """Draws section title"""
     c.setFont(FONT_BOLD, 11)
     c.drawString(x, y, title.upper())
     return y - 6 * mm
 
 def hr(c: canvas.Canvas, x: float, y: float, w: float):
-    """Рисует горизонтальную линию"""
+    """Draws horizontal line"""
     c.setLineWidth(0.6)
     c.line(x, y, x + w, y)
     return y - 4 * mm
 
 def ensure_space(c: canvas.Canvas, y: float, needed: float):
-    """Проверяет место на странице, добавляет новую если нужно"""
+    """Checks space on page, adds new one if needed"""
     if y - needed < MARGIN_BOTTOM:
         c.showPage()
         return PAGE_H - MARGIN_TOP
     return y
 
 
-# ========== НАСТРОЙКИ: Замените на свои данные ==========
+# ========== CONFIGURATION: Replace with your data ==========
 
 DATA = {
-    "name": "Иван Иванов",
+    "name": "John Doe",
     "title": "Senior Product Designer",
     "contacts": {
-        "email": "ivan.ivanov@example.com",
-        "linkedin": "linkedin.com/in/ivanov",
-        "portfolio": "ivanov.dev",
+        "email": "john.doe@example.com",
+        "linkedin": "linkedin.com/in/johndoe",
+        "portfolio": "johndoe.dev",
     },
     "summary": "Product designer with 8+ years of experience designing complex software products. Focus on data-driven platforms, conversion flows, and scalable design systems. Experience with fintech, AI-driven tools, and B2B interfaces.",
     "ai_impact": [
@@ -92,7 +92,7 @@ DATA = {
     ],
     "experience": [
         {
-            "company": "Пример Компания",
+            "company": "Example Company",
             "role": "Senior Product Designer",
             "dates": "2022 - Present",
             "location": "Remote",
@@ -103,10 +103,10 @@ DATA = {
             ],
         },
         {
-            "company": "Другая Компания",
+            "company": "Another Company",
             "role": "Product Designer",
             "dates": "2020 - 2022",
-            "location": "Москва",
+            "location": "New York",
             "bullets": [
                 "Redesigned trading experiences and onboarding flows",
                 "Improved activation by ~30% through iterative UX research",
@@ -115,13 +115,13 @@ DATA = {
         },
     ],
     "education": [
-        "Bachelor's Degree in Design, Пример Университет (2015-2019)",
+        "Bachelor's Degree in Design, Example University (2015-2019)",
     ],
 }
 
 
 def main():
-    # Имя выходного файла
+    # Output file name
     out = "CV_Resume.pdf"
     c = canvas.Canvas(out, pagesize=A4)
 
@@ -138,7 +138,7 @@ def main():
     c.drawString(x, y, DATA["title"])
     y -= 5 * mm
 
-    # Контакты со ссылками
+    # Contacts with links
     contacts = DATA.get("contacts", {})
     current_x = x
     current_y = y
@@ -195,7 +195,7 @@ def main():
     y = draw_wrapped_text(c, summary_text, x, y, w, FONT_MAIN, 10, leading=13)
     y -= 2 * mm
 
-    # AI & Product Impact (можно переименовать в "Key Achievements" или "Impact")
+    # AI & Product Impact (can be renamed to "Key Achievements" or "Impact")
     y = ensure_space(c, y, 30 * mm)
     y = section_title(c, "AI & Product Impact", x, y)
     for line in DATA.get("ai_impact", []):

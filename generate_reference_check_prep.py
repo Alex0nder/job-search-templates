@@ -1,5 +1,5 @@
-# generate_recommendation_request.py
-# Template for generating Request for Recommendation (request for recommendations) in PDF
+# generate_reference_check_prep.py
+# Template for generating Reference Check Preparation (preparation for reference check) in PDF
 
 # pip install reportlab
 
@@ -43,13 +43,12 @@ NAME    = "John Doe"  # Your name
 EMAIL   = "john.doe@example.com"  # Your email
 LINKS   = f'{format_academic_url_link("LinkedIn", "linkedin.com/in/johndoe")} · {format_academic_url_link("Portfolio", "johndoe.dev")}'
 
-# Data for recommendation request
-REFEREE_NAME = "Name Last Name"  # Person name you are asking for recommendation
+# Data for reference check preparation
+REFEREE_NAME = "Name Last Name"  # Referee name
 COMPANY = "Example Company"  # Company where you worked together
 ROLE = "Senior Product Designer"  # Your role there
-START_DATE = "January 2020"  # When you started working together
-END_DATE = "March 2023"  # When you finished working together (or "Present")
-CURRENT_POSITION = "Senior Product Designer"  # Position you are applying for
+NEW_COMPANY = "New Company"  # Company checking references
+NEW_POSITION = "Senior Product Designer"  # Position you are applying for
 
 
 # ========== LETTER TEXT: Edit for specific situation ==========
@@ -58,17 +57,18 @@ BODY = f"""
 
 Hi {REFEREE_NAME},
 
-I hope you're doing well! I wanted to reach out because I'm exploring new opportunities and I'd love to ask for your support.
+I hope you're doing well! I wanted to reach out because {NEW_COMPANY} is conducting reference checks as part of their hiring process for the {NEW_POSITION} position I'm applying for.
 
-I'm currently applying for {CURRENT_POSITION} positions and I'd be honored if you'd be willing to write a recommendation or serve as a reference for me. We worked together at {COMPANY} from {START_DATE} to {END_DATE}, where I worked as {ROLE}. Your perspective on my work during that time would be invaluable.
+They may be contacting you in the coming days, and I wanted to give you a heads up. I've listed you as a reference because of our work together at {COMPANY}, where I worked as {ROLE}.
 
-Specifically, if you could speak to [specific aspects - e.g., "my design process, collaboration with cross-functional teams, and ability to deliver results"], that would be particularly helpful.
+If they reach out, here are some key points you might want to mention:
+[Specific achievement 1 - e.g., "My work on [project] that resulted in [result]"]
+[Specific achievement 2 - e.g., "My collaboration skills and ability to work with cross-functional teams"]
+[Specific achievement 3 - e.g., "My problem-solving approach and attention to detail"]
 
-I've attached my current resume for your reference. The recommendation can be brief — even just a few sentences about our work together would be very helpful.
+I've also attached my current resume for your reference, in case it's helpful.
 
-Of course, I completely understand if you're unable to do this, and I appreciate your time either way. If you have any questions or need additional information, please don't hesitate to reach out.
-
-Thank you so much for your consideration, and I hope we can catch up soon!
+Thank you so much for your support! I really appreciate you taking the time to speak with them. If you have any questions or need additional information, please don't hesitate to reach out.
 
 Best regards,
 
@@ -79,7 +79,7 @@ Best regards,
 
 # ---------- Build PDF ----------
 
-def build_pdf(path="Recommendation_Request.pdf"):
+def build_pdf(path="Reference_Check_Preparation.pdf"):
     """Generates PDF in academic style"""
     margins = get_academic_margins()
     doc = SimpleDocTemplate(path, pagesize=A4, **margins)
