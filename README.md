@@ -11,6 +11,17 @@ Python templates for generating professional PDF documents for job applications 
 - 🚀 **Ready to Use** - Simple Python scripts, no complex setup needed
 - 🌍 **English Only** - All templates and documentation in English
 
+## Examples
+
+See example PDF files in the [`examples/`](examples/) folder:
+
+- [Cover Letter](examples/Cover_Letter.pdf) - Professional cover letter template
+- [CV/Resume](examples/CV_Resume.pdf) - One-page resume in scientific publication style
+- [Thank You Letter](examples/Thank_You_Letter.pdf) - Post-interview follow-up
+- [Salary Negotiation](examples/Salary_Negotiation_Letter.pdf) - Compensation negotiation
+
+All 17 templates have example PDFs available in the `examples/` folder.
+
 ## Quick Start
 
 ### Installation
