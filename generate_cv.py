@@ -122,7 +122,7 @@ DATA = {
 
 def main():
     # Output file name
-    out = "CV_Resume.pdf"
+    out = "CV_Resume_Classic.pdf"
     c = canvas.Canvas(out, pagesize=A4)
 
     x = MARGIN_X
